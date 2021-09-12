@@ -1,7 +1,7 @@
 {
   "name": "git-config-manager",
   "version": "0.0.2",
-  "description": "",
+  "description": "Git Config Manager",
   "main": "app.js",
   "scripts": {
     "app": "electron ."
