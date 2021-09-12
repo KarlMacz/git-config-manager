@@ -1,6 +1,6 @@
 {
   "name": "git-config-manager",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "Git Config Manager",
   "main": "app.js",
   "scripts": {
