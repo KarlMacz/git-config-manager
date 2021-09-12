@@ -7,38 +7,52 @@ let storage_data = JSON.parse(fs.readFileSync(`${__dirname}/config/storage.json`
 
 ipcMain.on('process-request', (e, param) => {
   let response = null;
+  let is_found = false;
+  let temp = null;
 
   switch(param.classification) {
     case 'load-git-configs':
-      response = {
-        status: 'ok',
-        message: 'Git Config list has been successfully retrieved.',
-        data: storage_data.git_configurations
-      };
+      if(storage_data.git_configurations.length > 0) {
+        response = {
+          status: 'ok',
+          message: 'Git Config list has been successfully retrieved.',
+          data: storage_data.git_configurations
+        };
+      } else {
+        response = {
+          status: 'fail',
+          message: 'No results found.'
+        };
+      }
 
       break;
     case 'get-current-git-config':
-      let temp = null;
-
       storage_data.git_configurations.forEach((item) => {
         let execName = execSync('git config user.name').toString();
         let execEmail = execSync('git config user.email').toString();
 
         if(item.name == execName.trim() && item.email == execEmail.trim()) {
           temp = item;
+
+          is_found = true;
         }
       });
 
-      response = {
-        status: 'ok',
-        message: 'Current git config has been successfully retrieved.',
-        data: temp
-      };
+      if(is_found) {
+        response = {
+          status: 'ok',
+          message: 'Current git config has been successfully retrieved.',
+          data: temp
+        };
+      } else {
+        response = {
+          status: 'fail',
+          message: 'No results found.'
+        };
+      }
       
       break;
     case 'save-git-config':
-      let is_found = false;
-
       if(storage_data.git_configurations.length > 0) {
         storage_data.git_configurations.forEach((item) => {
           if(item.email == param.data.email) {
@@ -64,6 +78,33 @@ ipcMain.on('process-request', (e, param) => {
         status: 'ok',
         message: 'Git Config has been successfully saved.'
       };
+
+      break;
+    case 'switch-git-config':
+      if(storage_data.git_configurations.length > 0) {
+        storage_data.git_configurations.forEach((item) => {
+          if(item.email == param.data) {
+            temp = item;
+  
+            is_found = true;
+          }
+        });
+      }
+
+      if(is_found) {
+        execSync(`git config --global user.name "${temp.name}"`).toString();
+        execSync(`git config --global user.email ${temp.email}`).toString();
+
+        response = {
+          status: 'ok',
+          message: 'Git Config has been successfully switched.'
+        };
+      } else {
+        response = {
+          status: 'fail',
+          message: 'Failed to switch git config.'
+        };
+      }
 
       break;
     default:

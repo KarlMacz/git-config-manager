@@ -36,9 +36,9 @@ function processListeners() {
       case 'load-git-configs':
         var content = '';
 
-        if(param.data.length > 0) {
+        if(param.status == 'ok' && param.data.length > 0) {
           param.data.forEach((item) => {
-            content += `<div class="box bg-white flex flex-row rounded p-4 shadow">
+            content += `<div class="switch-config box bg-white flex flex-row rounded p-4 shadow" data-email="${item.email}">
               <div class="flex flex-col flex-1">
                 <div class="font-semibold">${item.name}</div>
                 <div class="text-gray-500 text-xs">${item.email}</div>
@@ -54,7 +54,9 @@ function processListeners() {
         
         break;
       case 'get-current-git-config':
-        current_git_config = param.data;
+        if(param.status == 'ok') {
+          current_git_config = param.data;
+        }
 
         break;
       default:
@@ -83,5 +85,16 @@ $(function() {
     }, 100);
 
     return false;
+  });
+
+  $('body').on('click', '.switch-config', function() {
+    processRequest('switch-git-config', {
+      data: $(this).attr('data-email')
+    });
+
+    setTimeout(function() {
+      processRequest('get-current-git-config');
+      processRequest('load-git-configs');
+    }, 100);
   });
 });
