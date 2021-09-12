@@ -4,7 +4,12 @@
   "description": "Git Config Manager",
   "main": "app.js",
   "scripts": {
-    "start": "electron ."
+    "postinstall": "electron-builder install-app-deps",
+    "start": "electron .",
+    "dist": "electron-builder",
+    "dist:always": "electron-builder -p always",
+    "dist:win": "electron-builder -w --x64 --ia32",
+    "pack": "electron-builder --dir"
   },
   "keywords": [],
   "author": "Karl T. Macadangdang <karljarren0308@gmail.com>",
