@@ -4,7 +4,7 @@
   "description": "Git Config Manager",
   "main": "app.js",
   "scripts": {
-    "app": "electron ."
+    "start": "electron ."
   },
   "keywords": [],
   "author": "Karl T. Macadangdang <karljarren0308@gmail.com>",
