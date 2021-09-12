@@ -1,4 +1,7 @@
-const { app, BrowserWindow, Menu } = require('electron');
+const { app, BrowserWindow } = require('electron');
+const is_dev = require('electron-is-dev');
+
+require('./process');
 
 let win = null;
 
@@ -10,15 +13,23 @@ app.on('window-all-closed', () => {
 
 app.on('ready', () => {
   win = new BrowserWindow({
+    maximizable: false,
+    resizable: false,
     height: 640,
     width: 480,
-    show: false
+    show: false,
+    webPreferences: {
+      contextIsolation: false,
+      nodeIntegration: true
+    }
   });
 
   win.loadURL(`file://${__dirname}/src/index.html`);
-  win.webContents.openDevTools();
-
-  Menu.setApplicationMenu(null);
+  win.setMenu(null);
+  
+  if(is_dev) {
+    win.webContents.openDevTools();
+  }
 
   win.on('ready-to-show', () => {
     win.show();

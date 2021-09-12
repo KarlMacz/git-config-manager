@@ -1,0 +1,8 @@
+*:disabled {
+  cursor: not-allowed;
+  opacity: 50%;
+}
+
+.box:not(:last-child) {
+  margin-bottom: 1rem;
+}
