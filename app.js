@@ -10,8 +10,8 @@ app.on('window-all-closed', () => {
 
 app.on('ready', () => {
   win = new BrowserWindow({
-    height: 480,
-    width: 640,
+    height: 640,
+    width: 480,
     show: false
   });
 
