@@ -1,0 +1,19 @@
+{
+  "git_configurations": [
+    {
+      "name": "Karl T. Macadangdang",
+      "email": "karljarren0308@gmail.com",
+      "type": "Personal"
+    },
+    {
+      "name": "karlmacadangdang-lop",
+      "email": "karl@lophils.com",
+      "type": "Work"
+    },
+    {
+      "name": "Karl Jarren Macadangdang",
+      "email": "kj.macadangdang@mylogoinc.com",
+      "type": "Work"
+    }
+  ]
+}

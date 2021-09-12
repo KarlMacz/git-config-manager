@@ -1,6 +1,8 @@
 const { app, BrowserWindow } = require('electron');
 const is_dev = require('electron-is-dev');
 
+require('./process');
+
 let win = null;
 
 app.on('window-all-closed', () => {
@@ -17,7 +19,8 @@ app.on('ready', () => {
     width: 480,
     show: false,
     webPreferences: {
-      contextIsolation: true
+      contextIsolation: false,
+      nodeIntegration: true
     }
   });
 
