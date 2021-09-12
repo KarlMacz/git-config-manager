@@ -3,9 +3,6 @@ const is_dev = require('electron-is-dev');
 
 let win = null;
 
-app.allowRendererProcessReuse = true;
-app.contextIsolation = true;
-
 app.on('window-all-closed', () => {
   if(process.platform != 'darwin') {
     app.exit();
@@ -18,7 +15,10 @@ app.on('ready', () => {
     resizable: false,
     height: 640,
     width: 480,
-    show: false
+    show: false,
+    webPreferences: {
+      contextIsolation: true
+    }
   });
 
   win.loadURL(`file://${__dirname}/src/index.html`);
