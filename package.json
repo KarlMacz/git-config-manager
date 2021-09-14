@@ -11,6 +11,22 @@
     "dist:win": "electron-builder -w --x64 --ia32",
     "pack": "electron-builder --dir"
   },
+  "build": {
+    "appId": "com.karlmacz.git-config-manager",
+    "productName": "Git Config Manager",
+    "asar": true,
+    "win": {
+      "target": [
+        "nsis"
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": true,
+      "allowToChangeInstallationDirectory": true,
+      "runAfterFinish": true
+    }
+  },
   "keywords": [],
   "author": "Karl T. Macadangdang <karljarren0308@gmail.com>",
   "license": "ISC",
