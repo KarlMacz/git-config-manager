@@ -1,14 +1,37 @@
 const { ipcMain } = require('electron');
 const { execSync } = require('child_process');
+const os = require('os');
 const fs = require('fs');
 const moment = require('moment');
 
-let storage_data = JSON.parse(fs.readFileSync(`${__dirname}/config/storage.json`));
+const project_folder = `${os.userInfo().homedir}/git-config-manager`;
+const config_folder = `${project_folder}/config`;
+let storage_data = null;
+
+function initialize() {
+  if(!fs.existsSync(project_folder)) {
+    fs.mkdirSync(project_folder);
+  }
+
+  if(!fs.existsSync(config_folder)) {
+    fs.mkdirSync(config_folder);
+  }
+
+  if(!fs.existsSync(`${config_folder}/storage.json`)) {
+    fs.writeFileSync(`${config_folder}/storage.json`, JSON.stringify({
+      git_configurations: []
+    }));
+  }
+
+  storage_data = JSON.parse(fs.readFileSync(`${config_folder}/storage.json`));
+}
 
 ipcMain.on('process-request', (e, param) => {
   let response = null;
   let is_found = false;
   let temp = null;
+
+  initialize();
 
   switch(param.classification) {
     case 'load-git-configs':
@@ -72,7 +95,7 @@ ipcMain.on('process-request', (e, param) => {
         });
       }
 
-      fs.writeFileSync(`${__dirname}/config/storage.json`, JSON.stringify(storage_data));
+      fs.writeFileSync(`${config_folder}/storage.json`, JSON.stringify(storage_data));
 
       response = {
         status: 'ok',
