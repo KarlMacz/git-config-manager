@@ -3,6 +3,10 @@
   opacity: 50%;
 }
 
+.box {
+  cursor: pointer;
+}
+
 .box:not(:last-child) {
   margin-bottom: 1rem;
 }
