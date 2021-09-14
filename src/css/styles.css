@@ -10,3 +10,103 @@
 .box:not(:last-child) {
   margin-bottom: 1rem;
 }
+
+.circlet {
+  align-items: center;
+  border-radius: 9999px;
+  cursor: pointer;
+  font-size: 0.7rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 1rem;
+  width: 1rem;
+}
+
+.circlet:hover {
+  background-color: rgba(34, 34, 34, 0.2);
+}
+
+.notif {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  column-gap: 0.5rem;
+  padding: 0.5rem 1rem;
+}
+
+.notif > .notif-body {
+  font-size: 0.75rem;
+  flex: 1;
+}
+
+.pin {
+  align-items: center;
+  border-radius: 9999px;
+  display: flex;
+  flex-direction: row;
+  font-weight: bold;
+  justify-content: center;
+  height: 2rem;
+  width: 2rem;
+}
+
+.pin.pin-primary {
+  background-color: #3b82f6;
+  color: #ffffff;
+}
+
+.button {
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  outline: none;
+  padding: 0 1rem;
+  height: 2.5rem;
+  transition: 0.2s;
+}
+
+.button.button-small {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  padding: 0.25rem 0.5rem;
+  height: 1.5rem;
+}
+
+.button.button-primary {
+  background-color: #3b82f6;
+  color: #ffffff;
+}
+
+.button.button-primary:hover {
+  background-color: #60a5fa;
+}
+
+.button.button-primary:active {
+  background-color: #2563eb;
+}
+
+.button.button-success {
+  background-color: #059669;
+  color: #ffffff;
+}
+
+.button.button-success:hover {
+  background-color: #10b981;
+}
+
+.button.button-success:active {
+  background-color: #047857;
+}
+
+.button.button-danger {
+  background-color: #dc2626;
+  color: #ffffff;
+}
+
+.button.button-danger:hover {
+  background-color: #ef4444;
+}
+
+.button.button-danger:active {
+  background-color: #b91c1c;
+}

@@ -44,7 +44,7 @@ function processListeners() {
                 <div class="text-gray-500 text-xs">${item.email}</div>
               </div>
               <div class="items-center flex flex-row justify-center${current_git_config != null && current_git_config.email == item.email ? '' : ' invisible'}">
-                <span class="bg-blue-500 rounded-full items-center flex justify-center flex-row text-white font-bold h-8 w-8">&#10003;</span>
+                <span class="pin pin-primary">&#10003;</span>
               </div>
             </div>`;
           });
