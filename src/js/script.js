@@ -4,6 +4,18 @@ const moment = require('moment');
 
 let current_git_config = null;
 
+function notify(message, elements = null) {
+  $('.notifs').html(`<div class="notifs">
+      <div class="notif">
+        <div class="notif-body">
+          <span>${message}</span>
+        </div>
+        ${elements != null ? elements : ''}
+      </div>
+    </div>`);
+  // <a href="#" class="update-button button button-success button-small ml-1">Update Now</a>
+}
+
 function serializeForm(selector) {
   var obj = {};
   var form_val = $(selector).serializeArray();
