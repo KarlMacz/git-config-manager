@@ -1,9 +1,14 @@
 const { app, BrowserWindow } = require('electron');
 const is_dev = require('electron-is-dev');
+const AutoLaunch = require('auto-launch');
 
 require('./process');
 
 let win = null;
+let auto_launch = new AutoLaunch({
+  name: 'Git Config Manager',
+  path: app.getPath('exe')
+});
 
 app.on('window-all-closed', () => {
   if(process.platform != 'darwin') {
@@ -21,6 +26,12 @@ app.on('ready', () => {
     webPreferences: {
       contextIsolation: false,
       nodeIntegration: true
+    }
+  });
+
+  auto_launch.isEnabled().then((is_enabled) => {
+    if(!is_enabled) { 
+      auto_launch.enable();
     }
   });
 
