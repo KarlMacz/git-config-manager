@@ -30,7 +30,7 @@ app.on('ready', () => {
   });
 
   auto_launch.isEnabled().then((is_enabled) => {
-    if(!is_enabled) { 
+    if(!is_enabled) {
       auto_launch.enable();
     }
   });
