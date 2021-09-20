@@ -14,6 +14,15 @@
   "build": {
     "appId": "com.karlmacz.git-config-manager",
     "productName": "Git Config Manager",
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "KarlMacz",
+        "repo": "git-config-manager",
+        "private": false,
+        "releaseType": "release"
+      }
+    ],
     "asar": true,
     "win": {
       "target": [
